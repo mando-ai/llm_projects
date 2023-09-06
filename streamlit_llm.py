@@ -1,8 +1,6 @@
 import streamlit as st
 from llm_langchain_summary import main as llm_main
 
-# from transformers_based_summary import main as transformers_main
-
 if __name__ == "__main__":
     st.runtime.legacy_caching.clear_cache()
     st.set_page_config(layout="wide")
