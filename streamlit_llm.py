@@ -1,5 +1,6 @@
 import streamlit as st
 from llm_langchain_summary import main as llm_main
+
 # from transformers_based_summary import main as transformers_main
 
 if __name__ == "__main__":
@@ -10,14 +11,15 @@ if __name__ == "__main__":
         "It's time to master Summarization using openAI GPT 3.5 turbo model + Langchain"
     )
     st.sidebar.subheader("Enter below details👇🏻: ")
-    url = st.sidebar.text_input('Blog URL to create summary')
-    api_key = st.sidebar.text_input('Enter OpenAI API KEY')
+    url = st.sidebar.text_input("Blog URL to create summary")
+    api_key = st.sidebar.text_input("Enter OpenAI API KEY")
     st.sidebar.write("----")
     st.sidebar.subheader("About this app:")
     st.sidebar.write(
         "Designed by **Shubham Mandowara** to showcase text summarization using various techniques. You can select the model, and add text to summarize."
     )
-    st.sidebar.write("I hope this is helpful. Please feel free to contact me if you have any queries."
+    st.sidebar.write(
+        "I hope this is helpful. Please feel free to contact me if you have any queries."
     )
     st.sidebar.write("----")
     st.sidebar.subheader(
@@ -39,14 +41,11 @@ if __name__ == "__main__":
     )
     st.write(f"Given blog link:- {url}")
     summary = st.write("**Summary:**")
-    if (url != "" and api_key != ""):
-        with st.spinner('Wait for it...'):
+    if url != "" and api_key != "":
+        with st.spinner("Wait for it..."):
             output = None
             while output == None:
-                output = llm_main(
-                        url=url,
-                        open_api_key=api_key
-            )
+                output = llm_main(url=url, open_api_key=api_key)
         st.write(output)
     else:
         st.write("Enter details...")
