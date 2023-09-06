@@ -14,7 +14,7 @@ if __name__ == "__main__":
     st.sidebar.write("----")
     st.sidebar.subheader("About this app:")
     st.sidebar.write(
-        "Designed by **Shubham Mandowara** to showcase text summarization using various techniques. You can select the model, and add text to summarize."
+        "Designed by **Shubham Mandowara** to showcase text summarization using ChatGPT 3.5 and Langchain"
     )
     st.sidebar.write(
         "I hope this is helpful. Please feel free to contact me if you have any queries."
@@ -34,16 +34,23 @@ if __name__ == "__main__":
         )
 
     st.info(
-        """**Press Enter** to get summary after URL and OpenAI API Key""",
+        """**Hit Enter** to get summary after URL and OpenAI API Key""",
         icon="ℹ️",
     )
-    st.write(f"Given blog link:- {url}")
-    summary = st.write("**Summary:**")
+    VIDEO_DATA = 'https://youtu.be/8ae8JAfW4rY?si=BhCGmqiMAin7pwe5'
+    width = 20
+    width = max(width, 0.01)
+    side = max((100 - width) / 2, 0.01)
+
+    other, container = st.columns([side, width])
+    container.video(data=VIDEO_DATA)
+    other.write(f"Given blog link:- {url}")
+    summary = other.write("**Summary:**")
     if url != "" and api_key != "":
-        with st.spinner("Wait for it..."):
+        with other.spinner("Wait for it..."):
             output = None
             while output == None:
                 output = llm_main(url=url, open_api_key=api_key)
-        st.write(output)
+        other.write(output)
     else:
-        st.write("Enter details...")
+        other.write("Enter details...")
