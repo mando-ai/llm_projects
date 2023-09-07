@@ -47,7 +47,7 @@ if __name__ == "__main__":
     other.write(f"Given blog link:- {url}")
     summary = other.write("**Summary:**")
     if url != "" and api_key != "":
-        with other.spinner("Wait for it..."):
+        with st.spinner("Wait for it..."):
             output = None
             while output == None:
                 output = llm_main(url=url, open_api_key=api_key)
