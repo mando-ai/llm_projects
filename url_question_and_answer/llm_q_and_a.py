@@ -2,7 +2,7 @@
 from langchain.document_loaders import WebBaseLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from typing import List
@@ -41,7 +41,7 @@ def main(url:str, query:str, openai_api_key:str, model_name:str='gpt-3.5-turbo',
     # example 1-10 words are in 1st chunk and on next chunk 9-19 words chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=0)
     documents = text_splitter.split_documents(docs)
-    db = Chroma.from_documents(documents=documents, embedding=OpenAIEmbeddings(openai_api_key=openai_api_key))
+    db = FAISS.from_documents(documents=documents, embedding=OpenAIEmbeddings(openai_api_key=openai_api_key))
     llm = ChatOpenAI(model_name=model_name, temperature=temperature, openai_api_key=openai_api_key)
     qa_chain = RetrievalQA.from_chain_type(llm, retriever=db.as_retriever())
     result = qa_chain({"query": query})
