@@ -36,7 +36,7 @@ if __name__ == "__main__":
         """**Hit Enter** to get summary after URL and OpenAI API Key""",
         icon="ℹ️",
     )
-    VIDEO_DATA = 'https://youtu.be/8ae8JAfW4rY?si=BhCGmqiMAin7pwe5'
+    VIDEO_DATA = 'https://youtu.be/wbD5aufVclU'
     width = 20
     width = max(width, 0.01)
     side = max((100 - width) / 2, 0.01)
